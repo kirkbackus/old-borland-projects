@@ -1,0 +1,24 @@
+#ifndef ____GL_HEADER_BBLOX
+#define ____GL_HEADER_BBLOX
+
+#include <gl\gl.h>
+#include <gl\glu.h>
+#include <gl\glaux.h>
+
+void ResizeGLScene(int w, int h) {
+  float nRange = 100;
+  if(h == 0)  h = 1;
+
+  glViewport(0, 0, w, h);         // reset viewport
+  glMatrixMode(GL_PROJECTION);    // add perspective to scene
+  glLoadIdentity();               // restore matrix to original state
+
+  if (w <= h)
+    glOrtho (-nRange, nRange, -nRange*h/w, nRange*h/w, -nRange, nRange);
+  else
+    glOrtho (-nRange*w/h, nRange*w/h, -nRange, nRange, -nRange, nRange);
+
+  glMatrixMode(GL_MODELVIEW);
+}
+
+#endif

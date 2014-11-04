@@ -1,0 +1,236 @@
+[Closed Files]
+File_0=SourceModule,'C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\phyx_playground.res',0,1,1,1,1,0,0
+File_1=SourceModule,'C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\dynamic.h',0,1,12,107,37,0,0
+File_2=SourceModule,'C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\fps.h',0,1,1,12,32,0,0
+File_3=SourceModule,'C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\glmodel.h',0,1,1,41,1,0,0
+File_4=SourceModule,'C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\truck.h',0,1,30,120,45,0,0
+File_5=SourceModule,'C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\jump.h',0,1,27,8,60,0,0
+File_6=SourceModule,'C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\objects.h',0,1,1,2,21,0,0
+File_7=SourceModule,'C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\terrain.h',0,1,58,1,91,0,0
+
+[Modules]
+Module0=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\menu.h
+Module1=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\textures.h
+Module2=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\classes.h
+Module3=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\view.h
+Module4=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\drawing.h
+Module5=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\main.cpp
+Count=6
+EditWindowCount=1
+
+[C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\menu.h]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\textures.h]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\classes.h]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\view.h]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\drawing.h]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\main.cpp]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Program Files\Borland\CBuilder6\Projects\ProjectGroup1.bpg]
+FormState=0
+FormOnTop=0
+
+[C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\physx_proj.bpr]
+FormState=0
+FormOnTop=0
+
+[EditWindow0]
+ViewCount=6
+CurrentView=2
+View0=0
+View1=1
+View2=2
+View3=3
+View4=4
+View5=5
+MessageView=MessageView@EditWindow0
+Create=1
+Visible=1
+State=0
+Left=200
+Top=136
+Width=979
+Height=564
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=971
+ClientHeight=530
+LeftPanelSize=0
+RightPanelSize=0
+BottomPanelSize=85
+BottomPanelClients=MessageView@EditWindow0
+BottomPanelData=000004000000000000000000000000000000000000000000000100000000000000000B0000004D65737361676556696577FFFFFFFF
+
+[View0]
+Module=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\main.cpp
+CursorX=26
+CursorY=240
+TopLine=226
+LeftCol=1
+
+[View1]
+Module=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\drawing.h
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[View2]
+Module=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\menu.h
+CursorX=30
+CursorY=46
+TopLine=25
+LeftCol=1
+
+[View3]
+Module=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\view.h
+CursorX=33
+CursorY=19
+TopLine=3
+LeftCol=1
+
+[View4]
+Module=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\classes.h
+CursorX=28
+CursorY=4
+TopLine=1
+LeftCol=1
+
+[View5]
+Module=C:\Documents and Settings\Kirk\My Documents\Borland\Physx Borland\Classes\textures.h
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[Watches]
+Count=0
+
+[Breakpoints]
+Count=0
+
+[AddressBreakpoints]
+Count=0
+
+[Main Window]
+Create=1
+Visible=1
+State=2
+Left=0
+Top=0
+Width=1440
+Height=112
+MaxLeft=-4
+MaxTop=-4
+MaxWidth=1448
+MaxHeight=112
+ClientWidth=1440
+ClientHeight=78
+
+[ProjectManager]
+Create=1
+Visible=0
+State=0
+Left=369
+Top=372
+Width=438
+Height=305
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=430
+ClientHeight=279
+TBDockHeight=305
+LRDockWidth=438
+Dockable=1
+
+[AlignmentPalette]
+Create=1
+Visible=0
+State=0
+Left=200
+Top=114
+Width=156
+Height=84
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=150
+ClientHeight=60
+
+[PropertyInspector]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=416
+Width=190
+Height=447
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=182
+ClientHeight=421
+TBDockHeight=447
+LRDockWidth=190
+Dockable=1
+SplitPos=85
+ArrangeBy=Name
+SelectedItem=
+ExpandedItems=
+HiddenCategories=
+
+[ObjectTree]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=112
+Width=190
+Height=302
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=182
+ClientHeight=276
+TBDockHeight=302
+LRDockWidth=190
+Dockable=1
+
+[MessageView@EditWindow0]
+Create=1
+Visible=1
+State=0
+Left=12
+Top=0
+Width=959
+Height=85
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=959
+ClientHeight=85
+TBDockHeight=85
+LRDockWidth=443
+Dockable=1
+
+[DockHosts]
+DockHostCount=0
+

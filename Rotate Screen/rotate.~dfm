@@ -1,0 +1,77 @@
+object Form1: TForm1
+  Left = 200
+  Top = 125
+  Width = 409
+  Height = 387
+  Caption = 'Form1'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object BUp: TButton
+    Left = 0
+    Top = 0
+    Width = 401
+    Height = 97
+    Caption = 'UP'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -96
+    Font.Name = 'Chiller'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    OnClick = BUpClick
+  end
+  object BDown: TButton
+    Left = 0
+    Top = 256
+    Width = 401
+    Height = 97
+    Caption = 'DOWN'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -96
+    Font.Name = 'Chiller'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    OnClick = BDownClick
+  end
+  object BRight: TButton
+    Left = 200
+    Top = 96
+    Width = 201
+    Height = 161
+    Caption = 'RIGHT'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -96
+    Font.Name = 'Chiller'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    OnClick = BRightClick
+  end
+  object BLeft: TButton
+    Left = 0
+    Top = 96
+    Width = 201
+    Height = 161
+    Caption = 'Left'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -96
+    Font.Name = 'Chiller'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 3
+    OnClick = BLeftClick
+  end
+end

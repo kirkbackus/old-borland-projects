@@ -1,0 +1,220 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#include <math.h>
+#pragma hdrstop
+
+#include "opengl.h"
+#include "textures.h"
+#include "mapper.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+
+TFormMapper *FormMapper;
+
+GLUquadricObj *obj;
+
+HDC hDC;
+HGLRC hRC;
+HINSTANCE h;
+
+Textures textures(h);
+
+const float PI(3.14159);
+float xrot=0,yrot=0,zrot=0;
+float bgr=0, bgg=0, bgb;
+int tool=0;
+
+//---------------------------------------------------------------------------
+__fastcall TFormMapper::TFormMapper(TComponent* Owner)
+        : TForm(Owner)
+{
+  Application->OnIdle=IdleLoop;
+  hDC=GetDC(ViewBox->Handle);
+  EnableOpenGL(ViewBox->Handle,&hDC,&hRC);
+
+  obj=gluNewQuadric();			// Create A Pointer To The Quadric Object ( NEW )
+  gluQuadricNormals(obj, GLU_SMOOTH);	// Create Smooth Normals ( NEW )
+  gluQuadricTexture(obj, GL_TRUE);	// Create Texture Coords ( NEW )
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::IdleLoop(TObject*, bool& done) {
+  done=false;
+
+  Render();
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::Render() {
+  CameraLookAt(0,-4,12,0,0,0,0,1,0);
+
+  glClearColor(bgr,bgg,bgb,0.0);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glLoadIdentity();
+
+  glPushMatrix();
+  //Render all that stuff here
+  //Quadrics
+  //gluSphere, gluCylinder, gluDisk, gluPartialDisk
+  glEnable(GL_TEXTURE_2D);
+  textures.SetTexture(0);
+
+  glRotatef(xrot,1,0,0);
+  glRotatef(yrot,0,1,0);
+  glRotatef(zrot,0,0,1);
+
+  if (tool==0)gluSphere(obj,4,128,16);
+
+  if (tool==1) {
+    glTranslatef(0,0,-3);
+    gluCylinder(obj,3,3,6,128,16);
+  }
+
+  if (tool==2)gluDisk(obj,1,4,128,16);
+  if (tool==3)gluPartialDisk(obj,1,4,128,16,0,270);
+
+  glDisable(GL_TEXTURE_2D);
+  glPushMatrix();
+
+  SwapBuffers(hDC);
+  glFlush();
+}
+void __fastcall TFormMapper::Quit1Click(TObject *Sender)
+{
+  Close();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TFormMapper::Load1Click(TObject *Sender)
+{
+  if (TextureDialog->Execute()) {
+    bool trans = MessageBox(NULL,"Make the image transparent?","Transparent?",MB_YESNO)==IDYES;
+    textures.AddTexture128(TextureDialog->FileName.c_str(),0,trans);
+  }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::KeyTimerTimer(TObject *Sender)
+{
+  if (GetAsyncKeyState(VK_RIGHT)) {
+    yrot+=4;
+    //yrot+=(cos(PI/180*xrot))*4;
+    //zrot-=(sin(PI/180*xrot))*4;
+  }
+
+  if (GetAsyncKeyState(VK_LEFT)) {
+    yrot-=4;
+    //yrot-=(cos(PI/180*xrot))*4;
+    //zrot+=(sin(PI/180*xrot))*4;
+  }
+
+  if (GetAsyncKeyState(VK_UP)) {
+    //xrot-=fabs(cos(PI/180*yrot)*4);
+    xrot-=4;
+  }
+
+  if (GetAsyncKeyState(VK_DOWN)) {
+    xrot+=4;
+    //xrot+=fabs(cos(PI/180*yrot)*4);
+  }
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormMapper::ShapeSphereClick(TObject *Sender)
+{
+  tool=0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::ShapeCylinderClick(TObject *Sender)
+{
+  tool=1;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::ShapeDiskClick(TObject *Sender)
+{
+  tool=2;        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::SpeedButton3Click(TObject *Sender)
+{
+  tool=3;        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::Restart1Click(TObject *Sender)
+{
+  ShapeSphere->Click();
+  ShapeSphere->Down=1;
+
+  xrot=0;
+  yrot=0;
+  zrot=0;          
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormMapper::SetBackgroundColor1Click(TObject *Sender)
+{
+  if (BgColorDialog->Execute()) {
+    bgr=(float)GetRValue(BgColorDialog->Color)/255;
+    bgg=(float)GetGValue(BgColorDialog->Color)/255;
+    bgb=(float)GetBValue(BgColorDialog->Color)/255;
+  }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::Nearest1Click(TObject *Sender)
+{
+  Nearest1->Checked=1;
+  Linear1->Checked=0;
+
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP);
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_CLAMP);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::Linear1Click(TObject *Sender)
+{
+  Nearest1->Checked=0;
+  Linear1->Checked=1;
+  
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP);
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_CLAMP);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::EnableLighting1Click(TObject *Sender)
+{
+  EnableLighting1->Checked=!EnableLighting1->Checked;
+  if (EnableLighting1->Checked) glEnable(GL_LIGHTING);
+  else glDisable(GL_LIGHTING);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::SmoothShading1Click(TObject *Sender)
+{
+  SmoothShading1->Checked=1;
+  FlatShading1->Checked=0;
+
+  gluQuadricNormals(obj, GLU_SMOOTH);	// Create Smooth Normals ( NEW )
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMapper::FlatShading1Click(TObject *Sender)
+{
+  SmoothShading1->Checked=0;
+  FlatShading1->Checked=1;
+
+  gluQuadricNormals(obj, GLU_FLAT);	// Create Smooth Normals ( NEW )
+}
+//---------------------------------------------------------------------------
+

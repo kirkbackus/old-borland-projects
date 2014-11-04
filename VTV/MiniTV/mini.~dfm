@@ -1,0 +1,46 @@
+object MiniTVForm: TMiniTVForm
+  Left = 192
+  Top = 114
+  Width = 361
+  Height = 383
+  Caption = 'Mini TV'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object MiniTV: TWindowsMediaPlayer
+    Left = 0
+    Top = 0
+    Width = 353
+    Height = 329
+    Align = alClient
+    TabOrder = 0
+    ControlData = {
+      0003000008002800000068007400740070003A002F002F006C006C0067006100
+      6D00650073002E006E00650074002F0000000500000000000000F03F03000000
+      00000500000000000000000008000200000000000300010000000B00FFFF0300
+      000000000B00FFFF08000200000000000300320000000B00000008000A000000
+      660075006C006C0000000B0000000B0000000B00FFFF0B00FFFF0B0000000800
+      0200000000000800020000000000080002000000000008000200000000000B00
+      00007C24000001220000}
+  end
+  object MainMenu1: TMainMenu
+    Left = 8
+    Top = 8
+    object Sports1: TMenuItem
+      Caption = 'Sports'
+      object ESPN1: TMenuItem
+        Caption = 'ESPN'
+      end
+    end
+    object Weather1: TMenuItem
+      Caption = 'Weather'
+    end
+  end
+end

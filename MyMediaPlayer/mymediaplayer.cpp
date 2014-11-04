@@ -1,0 +1,36 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+//---------------------------------------------------------------------------
+USEFORM("mediaplayer.cpp", KMediaPlayer);
+USEFORM("minirecord.cpp", KMediaRec);
+//---------------------------------------------------------------------------
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+        try
+        {
+                 Application->Initialize();
+                 Application->Title = "Mini Media Player";
+                 Application->CreateForm(__classid(TKMediaPlayer), &KMediaPlayer);
+                 Application->CreateForm(__classid(TKMediaRec), &KMediaRec);
+                 Application->Run();
+        }
+        catch (Exception &exception)
+        {
+                 Application->ShowException(&exception);
+        }
+        catch (...)
+        {
+                 try
+                 {
+                         throw Exception("");
+                 }
+                 catch (Exception &exception)
+                 {
+                         Application->ShowException(&exception);
+                 }
+        }
+        return 0;
+}
+//---------------------------------------------------------------------------

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="All" />
+	<File name="BlackBox\bbpolygon.h" open="0" top="0" tabpos="0">
+		<Cursor position="722" topLine="9" />
+	</File>
+	<File name="Headers\bullets.h" open="0" top="0" tabpos="1">
+		<Cursor position="1636" topLine="59" />
+	</File>
+	<File name="Headers\drawing.h" open="0" top="0" tabpos="7">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="Headers\fonts.h" open="0" top="0" tabpos="8">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="Headers\gamecontrol.h" open="0" top="0" tabpos="5">
+		<Cursor position="10991" topLine="438" />
+	</File>
+	<File name="Headers\hud.h" open="0" top="0" tabpos="4">
+		<Cursor position="1020" topLine="23" />
+	</File>
+	<File name="Headers\level.h" open="0" top="0" tabpos="2">
+		<Cursor position="0" topLine="54" />
+	</File>
+	<File name="Headers\menu.h" open="0" top="0" tabpos="4">
+		<Cursor position="3488" topLine="96" />
+	</File>
+	<File name="Headers\particles.h" open="0" top="0" tabpos="0">
+		<Cursor position="1237" topLine="11" />
+	</File>
+	<File name="Headers\player.h" open="0" top="0" tabpos="1">
+		<Cursor position="2179" topLine="54" />
+	</File>
+	<File name="Headers\textures.h" open="0" top="0" tabpos="0">
+		<Cursor position="244" topLine="72" />
+	</File>
+	<File name="Headers\timer.h" open="0" top="0" tabpos="6">
+		<Cursor position="191" topLine="0" />
+	</File>
+	<File name="Headers\upgrade.h" open="0" top="0" tabpos="0">
+		<Cursor position="752" topLine="26" />
+	</File>
+	<File name="Headers\weapon.h" open="0" top="0" tabpos="2">
+		<Cursor position="1072" topLine="36" />
+	</File>
+	<File name="Headers\wiimote.h" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="109" />
+	</File>
+	<File name="USock\39dll.h" open="0" top="0" tabpos="0">
+		<Cursor position="5403" topLine="212" />
+	</File>
+	<File name="glGUI\glGUI.h" open="1" top="0" tabpos="5">
+		<Cursor position="156" topLine="0" />
+	</File>
+	<File name="glGUI\glGUIButton.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="glGUI\glGUIButton.h" open="0" top="0" tabpos="5">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="glGUI\glGUIControl.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="92" topLine="0" />
+	</File>
+	<File name="glGUI\glGUIControl.h" open="0" top="0" tabpos="6">
+		<Cursor position="106" topLine="0" />
+	</File>
+	<File name="glGUI\glGUIDrawing.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="glGUI\glGUIDrawing.h" open="0" top="0" tabpos="3">
+		<Cursor position="963" topLine="0" />
+	</File>
+	<File name="glGUI\glGUIInclude.h" open="1" top="0" tabpos="4">
+		<Cursor position="361" topLine="0" />
+	</File>
+	<File name="glGUI\glGUILabel.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="669" topLine="5" />
+	</File>
+	<File name="glGUI\glGUILabel.h" open="0" top="0" tabpos="8">
+		<Cursor position="104" topLine="0" />
+	</File>
+	<File name="glGUI\glGUITextBox.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="glGUI\glGUITextBox.h" open="1" top="0" tabpos="2">
+		<Cursor position="280" topLine="0" />
+	</File>
+	<File name="glGUI\glGUIWindow.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="1455" topLine="24" />
+	</File>
+	<File name="glGUI\glGUIWindow.h" open="0" top="0" tabpos="5">
+		<Cursor position="250" topLine="0" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="5993" topLine="197" />
+	</File>
+	<File name="usock.h" open="0" top="0" tabpos="0">
+		<Cursor position="1043" topLine="10" />
+	</File>
+</CodeBlocks_layout_file>

@@ -1,0 +1,129 @@
+class Explosion {
+  private:
+
+  int x,y;
+  int l,r,t,b;
+  bool visible;
+  Field* f;
+  int index;
+
+  /*
+  TImage* img;
+  TImage* ic;
+  TImage* ih;
+  TImage* iv;
+  TImage* il;
+  TImage* ir;
+  TImage* it;
+  TImage* ib;
+  TImage* bomb;
+  */
+
+  int time,stime,ctime;
+  void DrawRect(int xpos, int ypos, int xlen, int ylen);
+
+  public:
+
+  Explosion();
+  void Explode(int xpos, int ypos, int size);
+  void SetField(Field* field);
+  void SetImage(int image_index);
+  bool CollisionRect(RECT r);
+
+  void Draw();
+};
+
+Explosion::Explosion() {
+  x=0; y=0;
+  visible = 0;
+  l=0; r=0; t=0; b=0;
+  time=1000;
+  stime = GetTickCount();
+}
+
+inline void Explosion::SetField(Field* field) {
+  f = field;
+}
+
+bool Explosion::CollisionRect(RECT rct) {
+  if (visible)
+  if (rct.left + rct.right > x &&
+    rct.top + rct.bottom > y-t*16 &&
+    rct.left < x+16 &&
+    rct.top < y+b*16+16 || rct.left + rct.right > x-l*16 &&
+    rct.top + rct.bottom > y &&
+    rct.left < x+r*16+16 &&
+    rct.top < y+16) return 1;
+  return 0;
+}
+
+void Explosion::SetImage(int image_index) {
+  index = image_index;
+}
+
+void Explosion::Explode(int xpos, int ypos, int size=1) {
+  if (f==NULL)return;
+
+  visible = 1;
+
+  x = xpos;
+  y = ypos;
+
+  int fx = xpos/16;
+  int fy = ypos/16;
+
+  r = 0; l = 0; t = 0; b = 0;
+
+  for (int i=1;i<size;i++) if (f->GetPosition(fx+i,fy)==0) r = i; else break;
+  for (int i=1;i<size;i++) if (f->GetPosition(fx-i,fy)==0) l = i; else break;
+  for (int i=1;i<size;i++) if (f->GetPosition(fx,fy+i)==0) b = i; else break;
+  for (int i=1;i<size;i++) if (f->GetPosition(fx,fy-i)==0) t = i; else break;
+
+  stime = GetTickCount();
+}
+
+void Explosion::Draw() {
+  if (!visible)return;
+
+  glColor3f(1.0,0.5,0.5);
+  DrawRect(x,y,16,16);
+
+  for (int i=1;i<=r;i++) {
+    DrawRect(x+i*16,y,16,16);
+  }
+
+  for (int i=1;i<=l;i++) {
+    DrawRect(x-i*16,y,16,16);
+  }
+
+  for (int i=1;i<=b;i++) {
+    DrawRect(x,y+i*16,16,16);
+  }
+
+  for (int i=1;i<=t;i++) {
+    DrawRect(x,y-i*16,16,16);
+  }
+  glColor3f(1.0,1.0,1.0);
+
+  ctime = GetTickCount();
+  if (ctime-stime>time) visible = 0;
+}
+
+inline void Explosion::DrawRect(int xpos, int ypos, int xlen, int ylen) {
+  glEnable(GL_TEXTURE_2D);
+  glPushMatrix ();
+
+  glTranslatef(xpos,ypos,0);
+
+  glBegin(GL_QUADS);
+
+  glTexCoord2f(0.0f,1.0f); glVertex2f(0.0f,0.0f);
+  glTexCoord2f(1.0f,1.0f); glVertex2f(xlen,0.0f);
+  glTexCoord2f(1.0f,0.0f); glVertex2f(xlen,ylen);
+  glTexCoord2f(0.0f,0.0f); glVertex2f(0.0f,ylen);
+
+  glEnd();
+
+  glPopMatrix();
+  glDisable(GL_TEXTURE_2D);
+}

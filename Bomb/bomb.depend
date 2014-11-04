@@ -1,0 +1,382 @@
+# depslib dependency file v1.0
+1242603969 c:\documents and settings\kirk\my documents\borland\bomb\main.cpp
+	<windows.h>
+	<time.h>
+	<vector>
+	<gl/gl.h>
+	<gl/glu.h>
+	"blackbox.h"
+	"usock.h"
+	"Headers/drawing.h"
+	"Headers/particles.h"
+	"Headers/player.h"
+	"Headers/level.h"
+	"Headers/hud.h"
+	"Headers/gamecontrol.h"
+	"usock.h"
+
+1240508031 c:\documents and settings\kirk\my documents\borland\bomb\blackbox.cpp
+	<math.h>
+	<vector>
+	"BlackBox/bbvector.h"
+	"BlackBox/bbmatrix.h"
+	"BlackBox/bbcollision.h"
+	"BlackBox/bbpolygon.h"
+
+1240507560 c:\documents and settings\kirk\my documents\borland\bomb\blackbox\bbvector.h
+
+1240507562 c:\documents and settings\kirk\my documents\borland\bomb\blackbox\bbmatrix.h
+
+1240537788 c:\documents and settings\kirk\my documents\borland\bomb\blackbox\bbpolygon.h
+
+1240507573 c:\documents and settings\kirk\my documents\borland\bomb\blackbox\bbcollision.h
+
+1240508031 c:\documents and settings\kirk\my documents\borland\bomb\blackbox.h
+	<math.h>
+	<vector>
+	"BlackBox/bbvector.h"
+	"BlackBox/bbmatrix.h"
+	"BlackBox/bbcollision.h"
+	"BlackBox/bbpolygon.h"
+
+1242400296 c:\documents and settings\kirk\my documents\borland\bomb\headers\bomb.h
+
+1242771443 c:\documents and settings\kirk\my documents\borland\bomb\usock.h
+	<string>
+	"USock/39dll.h"
+
+1242495829 c:\documents and settings\kirk\my documents\borland\bomb\usock\39dll.h
+	"includes.h"
+	"tools.h"
+	"socket.h"
+	"buffer.h"
+	"list.h"
+
+1237658500 c:\documents and settings\kirk\my documents\borland\bomb\usock\includes.h
+	<windows.h>
+	<Assert.h>
+	<stdio.h>
+	<string.h>
+
+1237658500 c:\documents and settings\kirk\my documents\borland\bomb\usock\tools.cpp
+	"tools.h"
+
+1237658500 c:\documents and settings\kirk\my documents\borland\bomb\usock\tools.h
+	"includes.h"
+	"buffer.h"
+	<Iphlpapi.h>
+	<Wininet.h>
+
+1237659126 c:\documents and settings\kirk\my documents\borland\bomb\usock\buffer.h
+	"includes.h"
+
+1237658500 c:\documents and settings\kirk\my documents\borland\bomb\usock\socket.cpp
+	"socket.h"
+
+1237658500 c:\documents and settings\kirk\my documents\borland\bomb\usock\socket.h
+	"includes.h"
+	"buffer.h"
+
+1237658500 c:\documents and settings\kirk\my documents\borland\bomb\usock\buffer.cpp
+	"buffer.h"
+
+1237658500 c:\documents and settings\kirk\my documents\borland\bomb\usock\list.cpp
+	"list.h"
+
+1237658500 c:\documents and settings\kirk\my documents\borland\bomb\usock\list.h
+	"includes.h"
+
+1242605752 c:\documents and settings\kirk\my documents\borland\bomb\headers\player.h
+	"weapon.h"
+
+1242603901 c:\documents and settings\kirk\my documents\borland\bomb\headers\weapon.h
+	"bullets.h"
+
+1242603763 c:\documents and settings\kirk\my documents\borland\bomb\headers\bullets.h
+
+1242600534 c:\documents and settings\kirk\my documents\borland\bomb\headers\level.h
+	"upgrade.h"
+
+1242692807 c:\documents and settings\kirk\my documents\borland\bomb\headers\drawing.h
+	"fonts.h"
+
+1242479207 c:\documents and settings\kirk\my documents\borland\bomb\headers\upgrade.h
+
+1242485382 c:\documents and settings\kirk\my documents\borland\bomb\headers\fonts.h
+
+1242484252 c:\documents and settings\kirk\my documents\borland\bomb\headers\hud.h
+
+1242567073 c:\documents and settings\kirk\my documents\borland\bomb\headers\particles.h
+	"textures.h"
+
+1242478196 c:\documents and settings\kirk\my documents\borland\bomb\headers\textures.h
+
+1237658500 c:\documents and settings\kirk\my documents\borland\bomb\usock\md5.cpp
+	<stdio.h>
+	<stdlib.h>
+
+1246560339 c:\documents and settings\kirk\my documents\borland\bomb\headers\gamecontrol.h
+
+1237658500 source:c:\documents and settings\kirk\my documents\borland\bomb\usock\list.cpp
+	"list.h"
+
+1237658500 source:c:\documents and settings\kirk\my documents\borland\bomb\usock\md5.cpp
+	<stdio.h>
+	<stdlib.h>
+
+1237658500 source:c:\documents and settings\kirk\my documents\borland\bomb\usock\socket.cpp
+	"socket.h"
+
+1237658500 source:c:\documents and settings\kirk\my documents\borland\bomb\usock\tools.cpp
+	"tools.h"
+
+1246588920 source:c:\documents and settings\kirk\my documents\borland\bomb\main.cpp
+	<windows.h>
+	<time.h>
+	<vector>
+	<process.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	"blackbox.h"
+	"usock.h"
+	"Headers/timer.h"
+	"Headers/drawing.h"
+	"Headers/menu.h"
+	"Headers/particles.h"
+	"Headers/player.h"
+	"Headers/level.h"
+	"Headers/hud.h"
+	"Headers/gamecontrol.h"
+	"glGUI/glGUI.h"
+	"usock.h"
+
+1237658500 source:c:\documents and settings\kirk\my documents\borland\bomb\usock\buffer.cpp
+	"buffer.h"
+
+1242739074 c:\documents and settings\kirk\my documents\borland\bomb\headers\menu.h
+
+1242684860 c:\documents and settings\kirk\my documents\borland\bomb\headers\timer.h
+
+1246568912 c:\documents and settings\kirk\my documents\borland\bomb\glgui\glgui.h
+	"glGUIDrawing.h"
+	"glGUIControl.h"
+	"glGUIWindow.h"
+	"glGUIButton.h"
+	"glGUILabel.h"
+
+1246571004 c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguiwindow.h
+
+1246571843 c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguicontrol.h
+
+1246477895 source:c:\documents and settings\kirk\my documents\borland\bomb\glgui\glgui.cpp
+
+1246571032 source:c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguicontrol.cpp
+	"glGUIInclude.h"
+
+1246572115 source:c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguiwindow.cpp
+	"glGUIInclude.h"
+
+1246568252 c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguiinclude.h
+	<windows.h>
+	<stdarg.h>
+	<stdio.h>
+	<string>
+	<vector>
+	<math.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	"glGUIDrawing.h"
+	"glGUIControl.h"
+	"glGUIWindow.h"
+	"glGUIButton.h"
+	"glGUILabel.h"
+
+1246587374 c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguidrawing.h
+
+1246588148 source:c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguidrawing.cpp
+	"glGUIInclude.h"
+
+1246490544 c:\documents and settings\kirk\my documents\borland\bomb\quicktext\glquicktext.h
+
+1246558612 c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguibutton.h
+
+1246569701 source:c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguibutton.cpp
+	"glGUIInclude.h"
+
+1246568210 c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguilabel.h
+
+1246588680 source:c:\documents and settings\kirk\my documents\borland\bomb\glgui\glguilabel.cpp
+	"glGUIInclude.h"
+
+1237658500 source:c:\users\kirk\documents\programming\borland\bomb\usock\buffer.cpp
+	"buffer.h"
+
+1237659126 c:\users\kirk\documents\programming\borland\bomb\usock\buffer.h
+	"includes.h"
+
+1237658500 c:\users\kirk\documents\programming\borland\bomb\usock\includes.h
+	<windows.h>
+	<Assert.h>
+	<stdio.h>
+	<string.h>
+
+1237658500 source:c:\users\kirk\documents\programming\borland\bomb\usock\list.cpp
+	"list.h"
+
+1237658500 c:\users\kirk\documents\programming\borland\bomb\usock\list.h
+	"includes.h"
+
+1237658500 source:c:\users\kirk\documents\programming\borland\bomb\usock\md5.cpp
+	<stdio.h>
+	<stdlib.h>
+
+1237658500 source:c:\users\kirk\documents\programming\borland\bomb\usock\socket.cpp
+	"socket.h"
+
+1237658500 c:\users\kirk\documents\programming\borland\bomb\usock\socket.h
+	"includes.h"
+	"buffer.h"
+
+1237658500 source:c:\users\kirk\documents\programming\borland\bomb\usock\tools.cpp
+	"tools.h"
+
+1237658500 c:\users\kirk\documents\programming\borland\bomb\usock\tools.h
+	"includes.h"
+	"buffer.h"
+	<Iphlpapi.h>
+	<Wininet.h>
+
+1246477895 source:c:\users\kirk\documents\programming\borland\bomb\glgui\glgui.cpp
+
+1252692660 source:c:\users\kirk\documents\programming\borland\bomb\glgui\glguibutton.cpp
+	"glGUIInclude.h"
+
+1252693449 c:\users\kirk\documents\programming\borland\bomb\glgui\glguiinclude.h
+	<windows.h>
+	<stdarg.h>
+	<stdio.h>
+	<string>
+	<vector>
+	<math.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	"glGUIDrawing.h"
+	"glGUIControl.h"
+	"glGUIWindow.h"
+	"glGUIButton.h"
+	"glGUILabel.h"
+	"glGUITextBox.h"
+
+1246587374 c:\users\kirk\documents\programming\borland\bomb\glgui\glguidrawing.h
+
+1246571843 c:\users\kirk\documents\programming\borland\bomb\glgui\glguicontrol.h
+
+1246571004 c:\users\kirk\documents\programming\borland\bomb\glgui\glguiwindow.h
+
+1246558612 c:\users\kirk\documents\programming\borland\bomb\glgui\glguibutton.h
+
+1246568210 c:\users\kirk\documents\programming\borland\bomb\glgui\glguilabel.h
+
+1246571032 source:c:\users\kirk\documents\programming\borland\bomb\glgui\glguicontrol.cpp
+	"glGUIInclude.h"
+
+1246588148 source:c:\users\kirk\documents\programming\borland\bomb\glgui\glguidrawing.cpp
+	"glGUIInclude.h"
+
+1246588680 source:c:\users\kirk\documents\programming\borland\bomb\glgui\glguilabel.cpp
+	"glGUIInclude.h"
+
+1246572115 source:c:\users\kirk\documents\programming\borland\bomb\glgui\glguiwindow.cpp
+	"glGUIInclude.h"
+
+1252695047 c:\users\kirk\documents\programming\borland\bomb\glgui\glguitextbox.h
+
+1252694747 source:c:\users\kirk\documents\programming\borland\bomb\main.cpp
+	<windows.h>
+	<time.h>
+	<vector>
+	<process.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	"blackbox.h"
+	"usock.h"
+	"Headers/timer.h"
+	"Headers/drawing.h"
+	"Headers/menu.h"
+	"Headers/particles.h"
+	"Headers/player.h"
+	"Headers/level.h"
+	"Headers/hud.h"
+	"Headers/gamecontrol.h"
+	"glGUI/glGUI.h"
+	"usock.h"
+
+1240508031 c:\users\kirk\documents\programming\borland\bomb\blackbox.h
+	<math.h>
+	<vector>
+	"BlackBox/bbvector.h"
+	"BlackBox/bbmatrix.h"
+	"BlackBox/bbcollision.h"
+	"BlackBox/bbpolygon.h"
+
+1240507560 c:\users\kirk\documents\programming\borland\bomb\blackbox\bbvector.h
+
+1240507562 c:\users\kirk\documents\programming\borland\bomb\blackbox\bbmatrix.h
+
+1240507573 c:\users\kirk\documents\programming\borland\bomb\blackbox\bbcollision.h
+
+1240537788 c:\users\kirk\documents\programming\borland\bomb\blackbox\bbpolygon.h
+
+1242771443 c:\users\kirk\documents\programming\borland\bomb\usock.h
+	<string>
+	"USock/39dll.h"
+
+1242495829 c:\users\kirk\documents\programming\borland\bomb\usock\39dll.h
+	"includes.h"
+	"tools.h"
+	"socket.h"
+	"buffer.h"
+	"list.h"
+
+1242684860 c:\users\kirk\documents\programming\borland\bomb\headers\timer.h
+
+1242692807 c:\users\kirk\documents\programming\borland\bomb\headers\drawing.h
+	"fonts.h"
+
+1242485382 c:\users\kirk\documents\programming\borland\bomb\headers\fonts.h
+
+1242739074 c:\users\kirk\documents\programming\borland\bomb\headers\menu.h
+
+1242567073 c:\users\kirk\documents\programming\borland\bomb\headers\particles.h
+	"textures.h"
+
+1242478196 c:\users\kirk\documents\programming\borland\bomb\headers\textures.h
+
+1242605752 c:\users\kirk\documents\programming\borland\bomb\headers\player.h
+	"weapon.h"
+
+1242603901 c:\users\kirk\documents\programming\borland\bomb\headers\weapon.h
+	"bullets.h"
+
+1242603763 c:\users\kirk\documents\programming\borland\bomb\headers\bullets.h
+
+1242600534 c:\users\kirk\documents\programming\borland\bomb\headers\level.h
+	"upgrade.h"
+
+1242479207 c:\users\kirk\documents\programming\borland\bomb\headers\upgrade.h
+
+1242484252 c:\users\kirk\documents\programming\borland\bomb\headers\hud.h
+
+1246560339 c:\users\kirk\documents\programming\borland\bomb\headers\gamecontrol.h
+
+1252693555 c:\users\kirk\documents\programming\borland\bomb\glgui\glgui.h
+	"glGUIDrawing.h"
+	"glGUIControl.h"
+	"glGUIWindow.h"
+	"glGUIButton.h"
+	"glGUILabel.h"
+	"glGUITextBox.h"
+
+1252694262 source:c:\users\kirk\documents\programming\borland\bomb\glgui\glguitextbox.cpp
+	"glGUIInclude.h"
+

@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="dball_proj.exe"/>
+    <OBJFILES value="dball_proj.obj dball.obj"/>
+    <RESFILES value="dball_proj.res"/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) dball.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="bcbsmp.lib vclx.lib rtl.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib vclx.lib bcbsmp.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi bcbsmp.bpi dclocx.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="dball_proj.cpp"/>
+    <INCLUDEPATH value="..\TTS;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;&quot;F:\Borland\Desktop Ball II&quot;;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\TTS;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;&quot;F:\Borland\Desktop Ball II&quot;;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -a8 -b- -k- -vi -c -tW -tWM"/>
+    <PFLAGS value="-$Y- -$L- -$D- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -U1.0 -aa -Tpe -x -Gn"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="dball_proj.res" FORMNAME="" UNITNAME="dball_proj.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="dball_proj.cpp" FORMNAME="" UNITNAME="dball_proj" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="dball.cpp" FORMNAME="Form1" UNITNAME="dball" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=1
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=Last Level Games
+FileDescription=A nice toy where you can create balls and throw them around your screen
+FileVersion=1.0.0.0
+InternalName=Desktop Ball 2
+LegalCopyright=2007
+LegalTrademarks=
+OriginalFilename=Desktop Ball 2
+ProductName=Desktop Ball II
+ProductVersion=1.0.0.0
+Comments=Created By Kirk Backus
+
+[HistoryLists\hlIncludePath]
+Count=1
+Item0=C:\Program Files\Borland\CBuilder6\Projects;F:\Borland\Desktop Ball II;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=1
+Item0=C:\Program Files\Borland\CBuilder6\Projects;F:\Borland\Desktop Ball II;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+  </IDEOPTIONS>
+</PROJECT>

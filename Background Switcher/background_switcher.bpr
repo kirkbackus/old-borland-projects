@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="background_switcher.exe"/>
+    <OBJFILES value="background_switcher.obj background.obj"/>
+    <RESFILES value="background_switcher.res"/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) background.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="bcbsmp.lib vclx.lib rtl.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib vclx.lib bcbsmp.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi bcbsmp.bpi dclocx.bpi dclusr.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="background_switcher.cpp"/>
+    <INCLUDEPATH value="&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;&quot;C:\Documents and Settings\Kirk\Desktop\Borland\Background Switcher&quot;;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;&quot;C:\Documents and Settings\Kirk\Desktop\Borland\Background Switcher&quot;;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -a8 -b- -k- -vi -c -tW -tWM"/>
+    <PFLAGS value="-$Y- -$L- -$D- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="background_switcher.res" FORMNAME="" UNITNAME="background_switcher.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="background_switcher.cpp" FORMNAME="" UNITNAME="background_switcher" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="background.cpp" FORMNAME="Form1" UNITNAME="background" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=Last Level Games
+FileDescription=A nice program that cycles through background
+FileVersion=1.0.0.0
+InternalName=Background Changer
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=Background Changer
+ProductVersion=1.0.0.0
+Comments=
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+  </IDEOPTIONS>
+</PROJECT>

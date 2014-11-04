@@ -1,0 +1,61 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+using namespace std;
+
+#pragma hdrstop
+
+#include "gba.h"
+#include "code_box.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma link "frameleft"
+#pragma resource "*.dfm"
+TMainForm *MainForm;
+
+//---------------------------------------------------------------------------
+__fastcall TMainForm::TMainForm(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::Quit1Click(TObject *Sender)
+{
+  Close();        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::Compile1Click(TObject *Sender)
+{
+  CompilerWindow->Lines->Clear();
+  CompilerWindow->Lines->Add("Compiling...");
+
+  FILE* fp;
+  int status;
+  char path[1035];
+
+  /* Open the command for reading. */
+  fp = popen("ping google.com", "r");
+
+  if (fp == NULL) {
+    CompilerWindow->Lines->Add("[Error] Couldn't stream pipeline" );
+    CompilerWindow->Lines->Add("[Error] Code: "+(String)GetLastError());
+    return;
+  }
+
+  /* Read the output a line at a time - output it. */
+  while (fgets(path, sizeof(path)-1, fp) != NULL) {
+    if (path!="") CompilerWindow->Lines->Add(path);
+  }
+
+  /* close */
+  _pclose(fp);
+}
+//---------------------------------------------------------------------------
+

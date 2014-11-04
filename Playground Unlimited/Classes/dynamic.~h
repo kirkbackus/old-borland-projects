@@ -1,0 +1,220 @@
+#ifndef __DYNAMIC_OBJ_H
+#define __DYNAMIC_OBJ_H
+
+class Dynamic {
+  private:
+
+  float x,y,width,height,radius,rot;
+  float _r, _g, _b, _a;
+  bool txt;
+
+  public:
+
+  int id;
+  float type;
+  float mass;
+  float magnet;
+  float autospin;
+  float autoforcex,autoforcey;
+  bool hidden;
+  float restitution;
+
+  Dynamic(double xpos, double ypos, double density, double shape, double arg1) {
+    id = (int)g.CreateBody(xpos,ypos,density,shape,arg1,0,0);
+    type=shape;
+    mass = density;
+    if (shape==SHAPE_SPHERE) {
+      width=arg1;
+      height=arg1;
+    }
+    if (shape==SHAPE_PARTICLE || shape==SHAPE_FLUID) {
+      width=arg1;
+      height=arg1;
+    }
+    txt=0;
+    autospin = 0;
+    magnet = 0;
+    restitution = .125;
+    autoforcex = 0;
+    autoforcey = 0;
+    hidden = 0;
+  }
+
+  Dynamic(double xpos, double ypos, double density, double shape, double arg1, double arg2) {
+    if (shape!=SHAPE_LINE)
+    id = (int)g.CreateBody(xpos,ypos,density,shape,arg1,arg2,0);
+    type=shape;
+    mass = density;
+    if (shape==SHAPE_BOX) {
+      width=arg1;
+      height=arg2;
+    }
+    if (shape==SHAPE_LINE) {
+      width = arg1-xpos;
+      height = arg2-ypos;
+      id = CreateLine(xpos,ypos,arg1,arg2);
+    }
+    if (shape==SHAPE_CAPSULE) {
+      radius = arg2;
+      width = radius;
+      height = arg1;
+    }
+    txt=0;
+    autospin = 0;
+    magnet = 0;
+    restitution = .125;
+    autoforcex = 0;
+    autoforcey = 0;
+    hidden = 0;
+  }
+
+  Dynamic(double xpos, double ypos, double density, double shape, double arg1, double arg2, double arg3) {
+    id = (int)g.CreateBody(xpos,ypos,density,shape,arg1,arg2,arg3);
+    type=shape;
+    mass = density;
+    if (shape==SHAPE_TRIANGLE) {
+      width = arg1;
+      height = arg2;
+      radius = arg3;
+    }
+    txt=0;
+    autospin = 0;
+    magnet = 0;
+    restitution = .125;
+    autoforcex = 0;
+    autoforcey = 0;
+    hidden = 0;
+  }
+
+  ~Dynamic() {
+    DestroyBody(id);
+  }
+
+  void SetHidden(bool hide) {
+    hidden = hide;
+  }
+
+  void UseTexture(bool _use_texture) {
+    txt = _use_texture;
+  }
+
+  void SetAutoSpin(float torque) {
+    autospin = torque;
+  }
+
+  void SetMagnet(float power) {
+    magnet = power;
+    SetBodyMagnet(id,power);
+  }
+
+  void SetBounciness(float bounciness) {
+    restitution = bounciness;
+    SetBodyMaterial(id,1,1,restitution);
+  }
+
+  void SetAutoForce(float forcex, float forcey) {
+    autoforcex = forcex; autoforcey = forcey;
+  }
+
+  void setColor(float red, float green, float blue, float alpha) {
+    _r = red; _g = green; _b = blue; _a = alpha;
+  }
+
+  double getWidth() {return(width);}
+  double getHeight() {return(height);}
+  double getRadius() {return(radius);}
+
+  double getX() {return(GetBodyX(id));}
+  double getY() {return(GetBodyY(id));}
+  double getRot() {return(GetBodyRotation(id));}
+
+  double getHsp() {return(GetBodyHspeed(id));}
+  double getVsp() {return(GetBodyVspeed(id));}
+  double getRsp() {return(GetBodyRspeed(id));}
+
+  double getColR() {return(_r);}
+  double getColG() {return(_g);}
+  double getColB() {return(_b);}
+  double getColA() {return(_a);}
+
+  void Draw() {
+    if (type==SHAPE_PLANE)return;
+    x=GetBodyX(id);
+    y=GetBodyY(id);
+    rot=GetBodyRotation(id);
+
+    if (pause) {
+      if (fabs(GetBodyRspeed(id))<fabs(autospin/10)) {
+        AddTorque(id,autospin,0);
+      }
+      AddForce(id,autoforcex,autoforcey,0);
+    }
+
+    if(type==SHAPE_BOX) {
+      glColor4f(_r,_g,_b,_a/4);
+      DrawBox(x,y,width,height,rot);
+      glColor4f(_r,_g,_b,_a);
+      DrawBoxOut(x,y,width,height,rot);
+    } else if (type==SHAPE_TRIMESH || type==SHAPE_CONVEX) {
+      DrawBox(x,y,128,64,rot);
+    } else if (type==SHAPE_SPHERE) {
+      if (txt) DrawBox(x,y,2*width,2*width,rot);
+      else {
+        glColor4f(_r,_g,_b,_a/4);
+        DrawCircle(x,y,width,rot);
+        glColor4f(_r,_g,_b,_a);
+        DrawCircleOut(x,y,width,rot);
+      }
+    } else if (type==SHAPE_LINE) {
+      glColor4f(_r,_g,_b,_a);
+      DrawLine(x-width/2,y-height/2,x+width/2,y+height/2);
+    } else if (type==SHAPE_TRIANGLE) {
+      glColor4f(_r,_g,_b,_a/4);
+      DrawTriangle(x,y,width,height,rot);
+      glColor4f(_r,_g,_b,_a);
+      DrawTriangleOut(x,y,width,height,rot);
+    } else if (type==SHAPE_CAPSULE) {
+      glColor4f(_r,_g,_b,_a/4);
+      DrawCapsule(x,y,width,height,rot);
+      glColor4f(_r,_g,_b,_a);
+      DrawCapsuleOut(x,y,width,height,rot);
+    } else if (type==SHAPE_PARTICLE || type==SHAPE_FLUID) {
+      _r = 0;
+      _g = 0;
+      _b = 1;
+      glColor4f(_r,_g,_b,_a);
+      DrawCircle(x,y,width*2,rot);
+    }
+  }
+
+  void DrawQuad(float size, float r, float g, float b) {
+    Draw();
+    glPushMatrix ();
+
+    glTranslatef(x,y,0);
+
+    glBegin(GL_TRIANGLES);
+
+    float val=(float)(rand()%4)/20.0;
+
+    glColor4f(r+val,g+val,b+val,1.0f);
+    glVertex2f(-width/2,-height/2-8);
+    glVertex2f(+width/2,+height/2-8);
+    glColor4f(1.0f,1.0f,1.0f,0.0f);
+    glVertex2f(+width/2,+height/2-8+size);
+
+    glColor4f(r+val,g+val,b+val,1.0f);
+    glVertex2f(-width/2,-height/2-8);
+    glColor4f(1.0f,1.0f,1.0f,0.0f);
+    glVertex2f(-width/2,-height/2-8+size);
+    glVertex2f(+width/2,+height/2-8+size);
+    glColor4f(1.0f,1.0f,1.0f,1.0f);
+
+    glEnd();
+
+    glPopMatrix();
+    Draw();
+  }
+};
+
+#endif

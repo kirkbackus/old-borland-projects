@@ -1,0 +1,75 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "cool.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+HWND hWnd;
+HDC hDC;
+//---------------------------------------------------------------------------
+BOOL CALLBACK EnumProc( HWND hWnd, LPARAM )
+{
+    TCHAR   szClass[128];
+
+    GetClassName(hWnd, szClass, sizeof(szClass));
+    if (lstrcmp(szClass, "SysListView32") == 0)
+    {
+        GetClassName(GetParent(hWnd), szClass, sizeof(szClass));
+        if (lstrcmp(szClass, "SHELLDLL_DefView") == 0)
+        {
+            GetClassName(GetParent(GetParent(hWnd)), szClass, 
+                   sizeof(szClass));
+            if (lstrcmp(szClass, "Progman") == 0)
+            {
+                // we now have the window that is a child of
+                // "SHELLDLL_DefView" and a grandchild of "Progman"
+                return FALSE;
+            }
+        }
+    }
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+  : TForm(Owner)
+{
+  randomize();
+  hWnd = FindWindow("Progman", NULL);
+  if (NULL != hWnd)
+    hWnd = FindWindowEx(hWnd, NULL, "SHELLDLL_DefView", NULL);
+  if (NULL != hWnd)
+    hWnd = FindWindowEx(hWnd, NULL, "SysListView32", NULL);
+
+  hDC = GetDC(hWnd);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+  // if the window was found, ...
+  if (NULL != hWnd)
+  {
+    COLORREF colorBackground = ListView_GetTextBkColor(hWnd); // LVM_GETTEXTBKCOLOR
+    ListView_SetTextBkColor(hWnd, RGB(rand()%255, rand()%255, rand()%255)); // LVM_SETTEXTBKCOLOR
+
+    // add the 'desktop' to the update region
+    InvalidateRect(hWnd, NULL, TRUE);
+
+    // paint the update regions
+    UpdateWindow(hWnd);
+  }
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Timer2Timer(TObject *Sender)
+{
+  SetTextColor(hDC,clBlue);
+  //TextOut(hDC,rand()%Screen->Width,rand()%Screen->Height,"HELLO!!!",8);
+}
+//---------------------------------------------------------------------------
+

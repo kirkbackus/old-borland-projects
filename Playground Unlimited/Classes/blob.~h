@@ -1,0 +1,215 @@
+class Blob {
+  public:
+  vector<Dynamic*> vDynamic;
+  vector<Joint*> vJoint;
+  vector<Spring*> vSpring;
+
+  int id;
+  float x,y,rad,res;
+  float gbxp, gbyp;
+  float r,g,b;
+  float r2,g2,b2;
+  int bodyid;
+  bool moving;
+  bool popped;
+
+  Blob(float xpos, float ypos, float radius, float resolution);
+  ~Blob();
+
+  int GetBodyObject(int classid);
+  int GetClassObject(int bodyid);
+
+  void Draw();
+  void MoveBlob(float xoffset, float yoffset);
+};
+
+Blob::Blob(float xpos, float ypos, float radius, float resolution) {
+  x = xpos;
+  y = ypos;
+  rad = radius;
+  res = resolution;
+
+  gbxp=-1000;
+  gbyp=-1000;
+
+  float incr = (360.0/resolution);
+  float numdots = 1;
+
+  r = (rand()%255)/255.0;
+  g = (rand()%255)/255.0;
+  b = (rand()%255)/255.0;
+
+  popped = 0;
+
+  r2 = 0.5f + r/2;
+  g2 = 0.5f + g/2;
+  b2 = 0.5f + b/2;
+
+  vDynamic.push_back(new Dynamic(x,y,1,SHAPE_SPHERE,10));
+  vDynamic[vDynamic.size()-1]->setColor(r,g,b,1.0);
+
+  vDynamic.push_back(new Dynamic(x+LengthDirX(radius,0),y+LengthDirY(radius,0),1,SHAPE_SPHERE,4)); numdots++; //OUTER
+  vDynamic[vDynamic.size()-1]->setColor(r,g,b,1.0);
+  vDynamic.push_back(new Dynamic(x+LengthDirX(radius*.8,0),y+LengthDirY(radius*.8,0),1,SHAPE_SPHERE,4)); numdots++; //INNER
+  vDynamic[vDynamic.size()-1]->setColor(r,g,b,1.0);
+
+  vJoint.push_back(new Joint(vDynamic[vDynamic.size()-2]->id,vDynamic[vDynamic.size()-1]->id,0));
+  vJoint[vJoint.size()-1]->setColor(0,0,0,1);
+
+  vSpring.push_back(new Spring(vDynamic[vDynamic.size()-1]->id,vDynamic[vDynamic.size()-numdots]->id,20,10));
+  vSpring[vSpring.size()-1]->setColor(0,0,0,1);
+
+  float i;
+  for (i=incr;i<=360.0-incr/2;i+=incr) {
+    vDynamic.push_back(new Dynamic(x+LengthDirX(radius,i),y+LengthDirY(radius,i),1,SHAPE_SPHERE,4)); numdots++; //OUTER
+    vDynamic[vDynamic.size()-1]->setColor(r,g,b,1.0);
+    vDynamic.push_back(new Dynamic(x+LengthDirX(radius*.8,i),y+LengthDirY(radius*.8,i),1,SHAPE_SPHERE,4)); numdots++; //INNER
+    vDynamic[vDynamic.size()-1]->setColor(r,g,b,1.0);
+
+    SetBodyCollide(vDynamic[vDynamic.size()-1]->id,vDynamic[vDynamic.size()-2]->id,0);
+    SetBodyCollide(vDynamic[vDynamic.size()-3]->id,vDynamic[vDynamic.size()-2]->id,0);
+    SetBodyCollide(vDynamic[vDynamic.size()-4]->id,vDynamic[vDynamic.size()-1]->id,0);
+    SetBodyCollide(vDynamic[vDynamic.size()-1]->id,vDynamic[vDynamic.size()-3]->id,0);
+
+    vJoint.push_back(new Joint(vDynamic[vDynamic.size()-2]->id,vDynamic[vDynamic.size()-1]->id,0));
+    vJoint[vJoint.size()-1]->setColor(0,0,0,1);
+    vJoint.push_back(new Joint(vDynamic[vDynamic.size()-1]->id,vDynamic[vDynamic.size()-4]->id,0));
+    vJoint[vJoint.size()-1]->setColor(0,0,0,1);
+    vJoint.push_back(new Joint(vDynamic[vDynamic.size()-1]->id,vDynamic[vDynamic.size()-3]->id,0));
+    vJoint[vJoint.size()-1]->setColor(0,0,0,1);
+    vJoint.push_back(new Joint(vDynamic[vDynamic.size()-2]->id,vDynamic[vDynamic.size()-4]->id,0));
+    vJoint[vJoint.size()-1]->setColor(0,0,0,1);
+
+    vSpring.push_back(new Spring(vDynamic[vDynamic.size()-1]->id,vDynamic[vDynamic.size()-numdots]->id,20,10));
+    vSpring[vSpring.size()-1]->setColor(0,0,0,1);
+  }
+
+  vJoint.push_back(new Joint(vDynamic[vDynamic.size()-numdots+1]->id,vDynamic[vDynamic.size()-2]->id,0)); //F OUTER - L OUTER
+  vJoint[vJoint.size()-1]->setColor(0,0,0,1);
+  vJoint.push_back(new Joint(vDynamic[vDynamic.size()-numdots+2]->id,vDynamic[vDynamic.size()-2]->id,0)); //F INNER - L OUTER
+  vJoint[vJoint.size()-1]->setColor(0,0,0,1);
+  vJoint.push_back(new Joint(vDynamic[vDynamic.size()-numdots+2]->id,vDynamic[vDynamic.size()-1]->id,0)); //F INNER - L INNER
+  vJoint[vJoint.size()-1]->setColor(0,0,0,1);
+}
+
+Blob::~Blob() {
+  for (int i=0;(unsigned)i<vDynamic.size();i++) {
+    delete vDynamic[i];
+    vDynamic.erase(vDynamic.begin()+i);
+    i-=1;
+  }
+  for (int i=0;(unsigned)i<vJoint.size();i++) {
+    delete vJoint[i];
+    vJoint.erase(vJoint.begin()+i);
+    i-=1;
+  }
+  for (int i=0;(unsigned)i<vSpring.size();i++) {
+    delete vSpring[i];
+    vSpring.erase(vSpring.begin()+i);
+    i-=1;
+  }
+}
+
+void Blob::MoveBlob(float xoffset, float yoffset) {
+  moving = true;
+  for (unsigned int i=0;i<vDynamic.size();i++) {
+    SetBodyPosition(vDynamic[i]->id,vDynamic[i]->getX()+xoffset,vDynamic[i]->getY()+yoffset);
+    SetBodyHspeed(vDynamic[i]->id,0);
+    SetBodyVspeed(vDynamic[i]->id,0);
+  }
+}
+
+inline int Blob::GetBodyObject(int classid) {
+  if (classid==WORLD) return (WORLD);
+  return (vDynamic[classid]->id);
+}
+
+int Blob::GetClassObject(int bodyid) {
+  for (int i=0;i<(signed)vDynamic.size();i++) {
+    if (vDynamic[i]->id==bodyid)return(i);
+  }
+  return(-1);
+}
+
+void Blob::Draw() {
+  if (bodyid!=WORLD) {
+    if (gbxp!=-1000 && gbyp!=-1000) {
+      if (GetBodyX(bodyid)!=gbxp || GetBodyY(bodyid)!=gbyp) {
+        MoveBlob(GetBodyX(bodyid)-gbxp,GetBodyY(bodyid)-gbyp);
+      }
+    }
+  }
+
+  if (!GetAsyncKeyState(VK_LBUTTON) && moving) {
+    moving = 0;
+    float hsp = GetBodyHspeed(bodyid);
+    float vsp = GetBodyVspeed(bodyid);
+    for (unsigned int i=0;i<vDynamic.size();i++) {
+      SetBodyHspeed(vDynamic[i]->id,hsp);
+      SetBodyVspeed(vDynamic[i]->id,vsp);
+      SetBodyHspeed(bodyid, 0);
+      SetBodyVspeed(bodyid, 0);
+    }
+  }
+
+  int num=0;
+  for (int i=1;i<(signed)vDynamic.size();i+=2) {
+    if (vDynamic[i]->getX()<=vDynamic[0]->getX())num++;
+    if (vDynamic[i]->getY()<=vDynamic[0]->getY())num++;
+    vDynamic[i]->Draw();
+  }
+
+  num/=2;
+
+  if (num > res/1.5 || num < res/4) {
+    popped = true;
+  }
+
+  x = GetBodyX(vDynamic[0]->id);
+  y = GetBodyY(vDynamic[0]->id);
+
+  SetBodyX(bodyid,x);
+  SetBodyY(bodyid,y);
+
+  gbxp = x;
+  gbyp = y;
+
+  glPushMatrix();
+
+  glBegin(GL_TRIANGLE_FAN);
+  glColor4f(r,g,b,1);
+  glVertex2f(x,y);
+
+  float rt,bt,gt;
+  float ratio;
+
+  for (int i=1;i<(signed)vDynamic.size();i+=2) {
+    ratio = GetBodyVspeed(vDynamic[i]->id)/20+GetBodyHspeed(vDynamic[i]->id)/20;
+    if (ratio>1)ratio=1;
+
+    rt = r*ratio+r2*(1-ratio);
+    gt = g*ratio+g2*(1-ratio);
+    bt = b*ratio+b2*(1-ratio);
+
+    glColor4f(rt,gt,bt,1);
+    glVertex2f(GetBodyX(vDynamic[i]->id),GetBodyY(vDynamic[i]->id));
+  }
+
+  glVertex2f(GetBodyX(vDynamic[1]->id),GetBodyY(vDynamic[1]->id));
+
+  glEnd();
+
+  glBegin(GL_TRIANGLE_FAN);
+  glColor4f(r,g,b,1);
+  glVertex2f(x,y);
+
+  for (int i=2;i<(signed)vDynamic.size();i+=2) {
+    glVertex2f(GetBodyX(vDynamic[i]->id),GetBodyY(vDynamic[i]->id));
+  }
+
+  glVertex2f(GetBodyX(vDynamic[2]->id),GetBodyY(vDynamic[2]->id));
+
+  glEnd();
+
+  glPopMatrix();
+}

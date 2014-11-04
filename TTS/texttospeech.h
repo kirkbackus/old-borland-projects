@@ -1,0 +1,57 @@
+//---------------------------------------------------------------------------
+
+#ifndef texttospeechH
+#define texttospeechH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include "ACTIVEVOICEPROJECTLib_OCX.h"
+#include <OleCtrls.hpp>
+#include <ExtCtrls.hpp>
+#include <ComCtrls.hpp>
+//---------------------------------------------------------------------------
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+        TDirectSS *DirectSS1;
+        TEdit *Edit1;
+        TButton *Button1;
+        TShape *Shape1;
+        TShape *Shape2;
+        TShape *Shape3;
+        TShape *Shape4;
+        TShape *Shape5;
+        TShape *Shape6;
+        TShape *Shape7;
+        TShape *Shape8;
+        TShape *Shape9;
+        TListBox *ListBox1;
+        TLabel *Label2;
+        TGroupBox *GroupBox1;
+        TGroupBox *GroupBox2;
+        TTrackBar *TrackBar1;
+        TGroupBox *GroupBox3;
+        TLabel *Label1;
+        TLabel *Label3;
+        TTrackBar *TrackBar2;
+        TLabel *Label4;
+        TBevel *Bevel1;
+        TLabel *Label5;
+        TTimer *Timer1;
+        TLabel *Label6;
+        TGroupBox *GroupBox4;
+        void __fastcall Button1Click(TObject *Sender);
+        void __fastcall ListBox1Click(TObject *Sender);
+        void __fastcall TrackBar1Change(TObject *Sender);
+        void __fastcall TrackBar2Change(TObject *Sender);
+        void __fastcall FormDestroy(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+        __fastcall TForm1(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+//---------------------------------------------------------------------------
+#endif

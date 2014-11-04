@@ -1,0 +1,69 @@
+#ifndef __DYNAMIC_JOINTS_H
+#define __DYNAMIC_JOINTS_H
+
+class Joint {
+  private:
+
+  float _r, _g, _b, _a;
+
+  public:
+
+  int id;
+  int b1,b2;
+  int type;
+  float x,y;
+  float len;
+
+  Joint(double body1, double body2, int joint_type) {
+    b1 = body1; b2 = body2;
+    x = GetBodyX(b1);
+    y = GetBodyY(b1);
+    if (b2!=WORLD)len = PointDistance(x,y,GetBodyX(b2),GetBodyY(b2));
+    else len = -1;
+    if (joint_type==0) id = (int)CreateJoint(b1,b2,JOINT_FIXED,0,0,0);
+    if (joint_type==1) id = (int)CreateJoint(b1,b2,JOINT_HINGE,x,y,0);
+    type=joint_type;
+  }
+
+  Joint(double body1, double body2, int joint_type, float _x, float _y) {
+    b1 = body1; b2 = body2;
+    if (body1!=WORLD) { x = _x; y = _y; }
+    else { x = 0; y = 0; }
+    len = PointDistance(x,y,GetBodyX(b2),GetBodyY(b2));
+    if (joint_type==0) id = (int)CreateJoint(b1,b2,JOINT_FIXED,0,0,0);
+    if (joint_type==1) id = (int)CreateJoint(b1,b2,JOINT_HINGE,x,y,0);
+    type=joint_type;
+  }
+
+  ~Joint() {
+    DestroyJoint(id);
+  }
+
+  void setColor(float red, float green, float blue, float alpha) {
+    _r = red; _g = green; _b = blue; _a = alpha;
+  }
+
+  float getColR() { return(_r); }
+  float getColG() { return(_g); }
+  float getColB() { return(_b); }
+
+  void Draw() {
+    if (b1==WORLD || b2==WORLD) return;
+    float x1,x2,y1,y2,xpos,ypos;
+    float width,height;
+    x1=GetBodyX(b1); y1=GetBodyY(b1);
+    x2=GetBodyX(b2); y2=GetBodyY(b2);
+    x = x1;
+    y = y1;
+    xpos = (x1+x2)/2;
+    ypos = (y1+y2)/2;
+    width = x2-x1;
+    height = y2-y1;
+    glColor4f(_r,_g,_b,_a);
+    DrawCircle(x1,y1,4,0);
+    DrawCircle(x2,y2,4,0);
+    DrawLine(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2);
+  }
+};
+
+#endif

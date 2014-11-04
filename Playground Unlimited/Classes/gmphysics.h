@@ -1,0 +1,203 @@
+#ifndef __GM_PHYSICS
+#define __GM_PHYSICS
+
+/**************************
+ * Function Pointer Declarations
+ *
+ **************************/
+
+typedef double (__cdecl * dfunc)();
+typedef double (__cdecl * dfunc1)(double);
+typedef double (__cdecl * dfunc1s)(char*);
+typedef double (__cdecl * dfunc2)(double, double);
+typedef double (__cdecl * dfunc3)(double, double, double);
+typedef double (__cdecl * dfunc4)(double, double, double, double);
+typedef double (__cdecl * dfunc5)(double, double, double, double, double);
+typedef double (__cdecl * dfunc6)(double, double, double, double, double, double);
+typedef double (__cdecl * dfunc7)(double, double, double, double, double, double, double);
+typedef double (__cdecl * dfunc8)(double, double, double, double, double, double, double, double);
+typedef double (__cdecl * dfunc9)(double, double, double, double, double, double, double, double, double);
+typedef double (__cdecl * dfunc10)(double, double, double, double, double, double, double, double, double,double);
+
+/**************************
+ * Constants
+ *
+ **************************/
+
+#define SHAPE_PLANE	100
+#define SHAPE_BOX	101
+#define SHAPE_SPHERE	102
+#define SHAPE_FLUID	103
+#define SHAPE_PARTICLE	104
+#define SHAPE_LINE	105
+#define SHAPE_POLYGON	106
+#define SHAPE_TERRAIN	107
+#define SHAPE_CAPSULE	108
+#define SHAPE_CONVEX	109
+#define SHAPE_TRIANGLE	110
+#define SHAPE_ELLIPSE	111
+#define SHAPE_NGON	112
+#define SHAPE_LINE_LIST	113
+#define SHAPE_COMPOUND	114
+#define SHAPE_TRIMESH	115
+
+#define JOINT_HINGE	200
+#define JOINT_SLIDER	201
+#define JOINT_FIXED	202
+#define JOINT_SPRING	203
+
+#define STATIC          -1
+#define WORLD           -1
+#define ACTOR           -1000
+
+#define pi 3.14159
+
+/**************************
+ * Load the DLL and Functions Dynamically
+ *
+ **************************/
+
+HMODULE physx=LoadLibrary("gmphysics.dll");
+
+class GPhysics {
+  public:
+
+  GPhysics() {
+    if (physx==NULL) {
+      MessageBox(NULL,"Can't find\"GameData/gmphysics.dll\", you might\nwant to unzip the game if you haven't done\nthat already!","ERROR!",MB_OK);
+    }
+    dfunc InitPhysics=(dfunc)GetProcAddress(physx,"init_physics");
+    InitPhysics();
+  }
+
+  void InitPhysics() {
+    dfunc InitPhysics=(dfunc)GetProcAddress(physx,"init_physics");
+    InitPhysics();
+  }
+
+  double CreatePolygon() {
+    dfunc func=(dfunc)GetProcAddress(physx,"create_polygon");
+    return(func());
+  }
+
+  double ReleasePhysics() {
+    dfunc func=(dfunc)GetProcAddress(physx,"release_physics");
+    return(func());
+  }
+
+  double ClearBodies() {
+    dfunc func=(dfunc)GetProcAddress(physx,"clear_bodies");
+    return(func());
+  }
+
+  double UpdateBodies(double step) {
+    dfunc1 func=(dfunc1)GetProcAddress(physx,"update_bodies");
+    return(func(step));
+  }
+
+  double CreateBody(double x, double y, double density, double shape, double arg1, double arg2, double arg3) {
+    dfunc7 func=(dfunc7)GetProcAddress(physx,"create_body");
+    return(func(x,y,density,shape,arg1,arg2,arg3));
+  }
+} g;
+
+
+dfunc ClearJoints=(dfunc)GetProcAddress(physx,"clear_joints");
+dfunc ClearPolygons=(dfunc)GetProcAddress(physx,"clear_polygons");
+dfunc ClearSprings=(dfunc)GetProcAddress(physx,"clear_springs");
+dfunc ClearWater=(dfunc)GetProcAddress(physx,"clear_water");
+dfunc ClearFluids=(dfunc)GetProcAddress(physx,"clear_fluids");
+dfunc GetNumBodies=(dfunc)GetProcAddress(physx,"get_num_bodies");
+dfunc GetNumJoints=(dfunc)GetProcAddress(physx,"get_num_joints");
+dfunc GetNumPolygons=(dfunc)GetProcAddress(physx,"get_num_polygons");
+dfunc GetNumSprings=(dfunc)GetProcAddress(physx,"get_num_springs");
+dfunc GetNumWater=(dfunc)GetProcAddress(physx,"get_num_water");
+dfunc GetNumFluids=(dfunc)GetProcAddress(physx,"get_num_fluids");
+dfunc GetRayDistance=(dfunc)GetProcAddress(physx,"get_ray_distance");
+dfunc GetRayPointX=(dfunc)GetProcAddress(physx,"get_ray_point_x");
+dfunc GetRayPointY=(dfunc)GetProcAddress(physx,"get_ray_point_y");
+dfunc GetRayBody=(dfunc)GetProcAddress(physx,"get_ray_body");
+dfunc GetRayNormal=(dfunc)GetProcAddress(physx,"get_ray_normal");
+
+dfunc1 DestroyPolygon=(dfunc1)GetProcAddress(physx,"destroy_polygon");
+dfunc1s SavePhysicsState=(dfunc1s)GetProcAddress(physx,"save_physics_state");
+dfunc1s LoadPhysicsState=(dfunc1s)GetProcAddress(physx,"load_physics_state");
+dfunc1 GetNumVertex=(dfunc1)GetProcAddress(physx,"get_num_vertex");
+dfunc1 ResetPhysics=(dfunc1)GetProcAddress(physx,"reset_physics");
+dfunc1 SetRestitution=(dfunc1)GetProcAddress(physx,"set_restitution");
+dfunc1 SetScale=(dfunc1)GetProcAddress(physx,"set_scale");
+dfunc1 SetPause=(dfunc1)GetProcAddress(physx,"set_pause");
+dfunc1 SetTopDownMode=(dfunc1)GetProcAddress(physx,"set_top_down_mode");
+dfunc1 SetLineSize=(dfunc1)GetProcAddress(physx,"set_line_size");
+dfunc1 GetBodyX=(dfunc1)GetProcAddress(physx,"get_body_x");
+dfunc1 GetBodyY=(dfunc1)GetProcAddress(physx,"get_body_y");
+dfunc1 GetBodyMass=(dfunc1)GetProcAddress(physx,"get_mass");
+dfunc1 GetBodyHspeed=(dfunc1)GetProcAddress(physx,"get_body_hspeed");
+dfunc1 GetBodyVspeed=(dfunc1)GetProcAddress(physx,"get_body_vspeed");
+dfunc1 GetBodyRspeed=(dfunc1)GetProcAddress(physx,"get_body_rotspeed");
+dfunc1 GetBodyRotation=(dfunc1)GetProcAddress(physx,"get_body_rotation");
+dfunc1 DestroyBody=(dfunc1)GetProcAddress(physx,"destroy_body");
+dfunc1 GetNumShapes=(dfunc1)GetProcAddress(physx,"get_num_shapes");
+dfunc1 GetBodyUserData=(dfunc1)GetProcAddress(physx,"get_body_user_data");
+dfunc1 DestroyJoint=(dfunc1)GetProcAddress(physx,"destroy_joint");
+dfunc1 GetJointBroken=(dfunc1)GetProcAddress(physx,"get_joint_broken");
+dfunc1 DestroySpring=(dfunc1)GetProcAddress(physx,"destroy_spring");
+dfunc1 DestroyWater=(dfunc1)GetProcAddress(physx,"destroy_water");
+dfunc1 SetBodyCollideNone=(dfunc1)GetProcAddress(physx,"set_body_collide_none");
+dfunc1 GetWaterWavesNumPoints=(dfunc1)GetProcAddress(physx,"get_water_waves_num_points");
+
+dfunc2 SetBodyResponseEnabled=(dfunc2)GetProcAddress(physx,"set_body_response_enabled");
+dfunc2 SetBodyGravityEnabled=(dfunc2)GetProcAddress(physx,"set_body_gravity_enabled");
+dfunc2 SetBodyActor=(dfunc2)GetProcAddress(physx,"set_body_actor");
+dfunc2 GetSpringX=(dfunc2)GetProcAddress(physx,"get_spring_x");
+dfunc2 GetSpringY=(dfunc2)GetProcAddress(physx,"get_spring_y");
+dfunc2 SetWaterWavesUpdateFactor=(dfunc2)GetProcAddress(physx,"set_water_waves_update_factor");
+dfunc2 SetBodySolverCount=(dfunc2)GetProcAddress(physx,"set_body_solver_count");
+dfunc2 SetBodyMagnet=(dfunc2)GetProcAddress(physx,"set_body_magnet");
+dfunc2 SetBodyX=(dfunc2)GetProcAddress(physx,"set_body_x");
+dfunc2 SetBodyY=(dfunc2)GetProcAddress(physx,"set_body_y");
+dfunc2 SetBodyRotSpeed=(dfunc2)GetProcAddress(physx,"set_body_rotspeed");
+dfunc2 RemoveVertex=(dfunc2)GetProcAddress(physx,"remove_vertex");
+dfunc2 SetGravity=(dfunc2)GetProcAddress(physx,"set_gravity");
+dfunc2 SetFriction=(dfunc2)GetProcAddress(physx,"set_friction");
+dfunc2 SetWind=(dfunc2)GetProcAddress(physx,"set_wind");
+dfunc2 SetBodyRotation=(dfunc2)GetProcAddress(physx,"set_body_rotation");
+dfunc2 SetUseCCD=(dfunc2)GetProcAddress(physx,"set_use_ccd");
+dfunc2 SetCCDSpeed=(dfunc2)GetProcAddress(physx,"set_ccd_speed");
+dfunc2 MoveActorRotation=(dfunc2)GetProcAddress(physx,"move_actor_rotation");
+dfunc2 GetWaterWavesPointX=(dfunc2)GetProcAddress(physx,"get_water_waves_point_x");
+dfunc2 GetWaterWavesPointY=(dfunc2)GetProcAddress(physx,"get_water_waves_point_y");
+dfunc2 RemoveShape=(dfunc2)GetProcAddress(physx,"remove_shape");
+dfunc2 SetBodyUserData=(dfunc2)GetProcAddress(physx,"set_body_user_data");
+dfunc2 SetSolverAccuracy=(dfunc2)GetProcAddress(physx,"set_solver_accuracy");
+dfunc2 SetBodyHspeed=(dfunc2)GetProcAddress(physx,"set_body_hspeed");
+dfunc2 SetBodyVspeed=(dfunc2)GetProcAddress(physx,"set_body_vspeed");
+dfunc2 SetBodyLayer=(dfunc2)GetProcAddress(physx,"set_body_layer");
+dfunc2 SetBodyMaxRotationSpeed=(dfunc2)GetProcAddress(physx,"set_body_max_rotation_speed");
+
+dfunc3 AddVertex=(dfunc3)GetProcAddress(physx,"add_vertex");
+dfunc3 SetWaterWaves=(dfunc3)GetProcAddress(physx,"set_water_waves");
+dfunc3 CreateRayBody=(dfunc3)GetProcAddress(physx,"create_ray_body");
+dfunc3 AddTorque=(dfunc3)GetProcAddress(physx,"add_torque");
+dfunc3 MoveActorPosition=(dfunc3)GetProcAddress(physx,"move_actor_position");
+dfunc3 SetBodyPosition=(dfunc3)GetProcAddress(physx,"set_body_position");
+dfunc3 SetShapeRotation=(dfunc3)GetProcAddress(physx,"set_shape_rotation");
+dfunc3 SetBodyCollide=(dfunc3)GetProcAddress(physx,"set_body_collide");
+dfunc3 SetSliderLimits=(dfunc3)GetProcAddress(physx,"set_slider_limits");
+dfunc3 SetJointBreakable=(dfunc3)GetProcAddress(physx,"set_joint_breakable");
+
+dfunc4 AddForce=(dfunc4)GetProcAddress(physx,"add_force");
+dfunc4 CreateRay=(dfunc4)GetProcAddress(physx,"create_ray");
+dfunc4 SetShapePosition=(dfunc4)GetProcAddress(physx,"set_shape_position");
+dfunc4 SetBodyMaterial=(dfunc4)GetProcAddress(physx,"set_body_material");
+
+dfunc5 CreateExplosion=(dfunc5)GetProcAddress(physx,"create_explosion");
+dfunc5 CreateImplosion=(dfunc5)GetProcAddress(physx,"create_implosion");
+
+dfunc6 CreateJoint=(dfunc6)GetProcAddress(physx,"create_joint");
+
+dfunc8 CreateWater=(dfunc8)GetProcAddress(physx,"create_water");
+
+dfunc10 CreateSpring=(dfunc10)GetProcAddress(physx,"create_spring");
+
+#endif

@@ -1,0 +1,117 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "blackbox_new.h"
+#include "collision.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+
+using namespace BlackBox;
+
+Vector v1;
+Vector v2;
+Vector v3;
+
+Sphere s1;
+BlackBox::Point s1c;
+
+BlackBox::Point t[3];
+BlackBox::Point ls,le;
+
+int col,col2;
+
+int mx,my;
+
+float x,y,z;
+
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+        : TForm(Owner)
+{
+  DoubleBuffered = 1;
+  
+  t[0].p[0]=64;
+  t[0].p[1]=32;
+  t[0].p[2]=.001;
+
+  t[2].p[0]=256;
+  t[2].p[1]=128;
+  t[2].p[2]=.001;
+
+  t[1].p[0]=64;
+  t[1].p[1]=256;
+  t[1].p[2]=.001;
+
+  ls.p[0]=0;
+  ls.p[1]=0;
+  ls.p[2]=0;
+
+  v1.d[0]=1;
+  v2.d[1]=1;
+
+  s1.c.p[0]=256;
+  s1.c.p[1]=256;
+  s1.c.p[2]=0;
+  s1.r=34;
+
+  float tmpf;
+
+  col=IntersectLineTriangle(ls,le,t[0],t[1],t[2],x,y,z);
+  col2=IntersectRaySphere(ls,le,s1,&tmpf,&s1c);
+
+  DoubleBuffered=1;
+
+  v1.d[0] = 4;
+  v1.d[1] = 2;
+  v1.d[2] = 0;
+
+  v2.d[0] = 1;
+  v2.d[1] = 2;
+  v2.d[2] = 0;
+
+  v3 = Cross(v1,v2);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+  le.p[0]=mx;
+  le.p[1]=my;
+  le.p[2]=.001;
+  Form1->Repaint();
+
+  col=IntersectLineTriangle(ls,le,t[0],t[1],t[2],x,y,z);
+
+  Label1->Caption = String(SmallestAngle(v1,v2))+"\n\nX: "+String(v3.d[0])+
+                    "\nY: "+String(v3.d[1])+"\nZ: "+String(v3.d[2])+
+                    "\n("+String(v3.d[0])+","+String(v3.d[1])+")"+
+                    "\n\nCollide Sphere: "+String(col2)+" - ("+String(s1c.p[0])+","+s1c.p[1]+")"+
+                    "\nCollide: "+String(col)+
+                    "\n\nEnd: ("+String(le.p[0])+","+String(le.p[1])+")";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormMouseMove(TObject *Sender, TShiftState Shift,
+      int X, int Y)
+{
+  mx = X;
+  my = Y;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormPaint(TObject *Sender)
+{
+  Form1->Canvas->MoveTo(t[0].p[0],t[0].p[1]);
+  Form1->Canvas->LineTo(t[1].p[0],t[1].p[1]);
+  Form1->Canvas->LineTo(t[2].p[0],t[2].p[1]);
+  Form1->Canvas->LineTo(t[0].p[0],t[0].p[1]);
+  Form1->Canvas->MoveTo(ls.p[0],ls.p[1]);
+  Form1->Canvas->LineTo(le.p[0],le.p[1]);
+  Form1->Canvas->Ellipse(s1.c.p[0]-s1.r/2.0f,s1.c.p[1]-s1.r/2.0f,s1.c.p[0]+s1.r/2.0f,s1.c.p[1]+s1.r/2.0f);
+}
+//---------------------------------------------------------------------------
+

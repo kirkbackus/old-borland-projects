@@ -1,0 +1,84 @@
+#ifndef BLACKBOX_VECTOR_H
+#define BLACKBOX_VECTOR_H
+
+class Matrix;
+
+///-----------------------------------------------------------------------------
+///Vector Class Definition
+///-----------------------------------------------------------------------------
+class Vector {
+    public:
+    float x,y;
+    static Vector Zero;
+
+    Vector();
+    Vector(float xval, float yval);
+
+    float Length();
+    Vector Normalize();
+
+    void Clamp(Vector min,Vector max);
+
+    float Angle(Vector v);
+    Vector& Rotate(float angle);
+    Vector& Rotate(Vector& center, float angle);
+
+    Vector& operator+= (Vector v);
+    Vector& operator-= (Vector v);
+    Vector& operator*= (float s);
+    Vector& operator/= (float s);
+
+    float operator* (const Vector& v) const;
+    float operator^ (const Vector& v) const;
+
+    Vector operator+ (const Vector &v) const;
+    Vector operator- (const Vector &v) const;
+    Vector operator* (float s);
+    Vector operator/ (float s);
+    Vector operator -(void) const { return Vector(-x, -y); }
+
+    Vector operator* (const Matrix& M) const;
+    Vector operator^ (const Matrix& M) const;
+    Vector& operator*= (const Matrix& M);
+    Vector& operator^= (const Matrix& M);
+
+    Vector operator= (Vector v);
+
+    bool operator== (Vector v);
+    bool operator!= (Vector v);
+};
+
+///-----------------------------------------------------------------------------
+///Vector Class Function Definitions
+///-----------------------------------------------------------------------------
+inline Vector::Vector() { x = 0; y = 0; }
+inline Vector::Vector(float xval, float yval) { x = xval; y = yval; }
+
+inline float Vector::Length() { return(sqrt(x*x+y*y)); }
+inline Vector Vector::Normalize() { return(Vector(x/Length(),y/Length())); }
+inline float Vector::Angle(Vector v) { return ((float) atan2((*this)^v,(*this)*v)); }
+
+inline void Vector::Clamp(Vector min, Vector max) { x = (x < min.x)? min.x : (x > max.x)? max.x : x; y = (y < min.y)? min.y : (y > max.y)? max.y : y; }
+
+inline Vector& Vector::Rotate(float angle) { float tx = x; x =  x * cos(angle) - y * sin(angle); y = tx * sin(angle) + y * cos(angle); return *this; }
+inline Vector& Vector::Rotate(Vector& center, float angle) { Vector v = *this - center; v.Rotate(angle); *this = center + v; return *this; }
+
+inline Vector& Vector::operator+= (Vector v) { x+=v.x; y+=v.y; return *this; }
+inline Vector& Vector::operator-= (Vector v) { x-=v.x; y-=v.y; return *this; }
+inline Vector& Vector::operator*= (float s) { x*=s; y*=s; return *this; }
+inline Vector& Vector::operator/= (float s) { x/=s; y/=s; return *this; }
+
+inline Vector Vector::operator+ (const Vector &v) const { return (Vector(x+v.x,y+v.y)); }
+inline Vector Vector::operator- (const Vector &v) const { return (Vector(x-v.x,y-v.y)); }
+inline float Vector::operator* (const Vector& v) const { return(x*v.x+y*v.y); }
+inline float Vector::operator^ (const Vector& v) const { return(x*v.y-y*v.x); }
+
+inline Vector Vector::operator* (float s) { return(Vector(x*s,y*s)); }
+inline Vector Vector::operator/ (float s) { return(Vector(x/s,y/s)); }
+
+inline Vector Vector::operator= (Vector v) { x = v.x; y = v.y; return *this; }
+
+inline bool Vector::operator== (Vector v) { return(x==v.x && y==v.y); }
+inline bool Vector::operator!= (Vector v) { return(x!=v.x || y!=v.y); }
+
+#endif

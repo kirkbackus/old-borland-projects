@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Bomb" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="default">
+				<Option output="bomb.exe" prefix_auto="0" extension_auto="0" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectResourceIncludeDirsRelation="0" />
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="default;" />
+		</VirtualTargets>
+		<Linker>
+			<Add library="opengl32" />
+			<Add library="glu32" />
+			<Add library="gdi32" />
+			<Add library="user32" />
+			<Add library="kernel32" />
+			<Add library="Ws2_32" />
+			<Add library="Wininet" />
+			<Add library="Iphlpapi" />
+		</Linker>
+		<Unit filename="BlackBox\bbcollision.h" />
+		<Unit filename="BlackBox\bbengine.h" />
+		<Unit filename="BlackBox\bbmatrix.h" />
+		<Unit filename="BlackBox\bbpolygon.h" />
+		<Unit filename="BlackBox\bbvector.h" />
+		<Unit filename="Headers\bullets.h" />
+		<Unit filename="Headers\camera.h" />
+		<Unit filename="Headers\drawing.h" />
+		<Unit filename="Headers\fonts.h" />
+		<Unit filename="Headers\gamecontrol.h" />
+		<Unit filename="Headers\hud.h" />
+		<Unit filename="Headers\level.h" />
+		<Unit filename="Headers\menu.h" />
+		<Unit filename="Headers\multitexturing.h" />
+		<Unit filename="Headers\particles.h" />
+		<Unit filename="Headers\player.h" />
+		<Unit filename="Headers\textures.h" />
+		<Unit filename="Headers\timer.h" />
+		<Unit filename="Headers\upgrade.h" />
+		<Unit filename="Headers\weapon.h" />
+		<Unit filename="Headers\wiimote.h" />
+		<Unit filename="USock\39dll.h" />
+		<Unit filename="USock\buffer.cpp" />
+		<Unit filename="USock\buffer.h" />
+		<Unit filename="USock\includes.h" />
+		<Unit filename="USock\list.cpp" />
+		<Unit filename="USock\list.h" />
+		<Unit filename="USock\md5.cpp" />
+		<Unit filename="USock\socket.cpp" />
+		<Unit filename="USock\socket.h" />
+		<Unit filename="USock\tools.cpp" />
+		<Unit filename="USock\tools.h" />
+		<Unit filename="blackbox.h" />
+		<Unit filename="glGUI\glGUI.cpp" />
+		<Unit filename="glGUI\glGUI.h" />
+		<Unit filename="glGUI\glGUIButton.cpp" />
+		<Unit filename="glGUI\glGUIButton.h" />
+		<Unit filename="glGUI\glGUIControl.cpp" />
+		<Unit filename="glGUI\glGUIControl.h" />
+		<Unit filename="glGUI\glGUIDrawing.cpp" />
+		<Unit filename="glGUI\glGUIDrawing.h" />
+		<Unit filename="glGUI\glGUIInclude.h" />
+		<Unit filename="glGUI\glGUILabel.cpp" />
+		<Unit filename="glGUI\glGUILabel.h" />
+		<Unit filename="glGUI\glGUITextBox.cpp" />
+		<Unit filename="glGUI\glGUITextBox.h" />
+		<Unit filename="glGUI\glGUIWindow.cpp" />
+		<Unit filename="glGUI\glGUIWindow.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="usock.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
